@@ -15,7 +15,6 @@ datasource db {
 }
 model Boards {
   id          Int   @id @default(autoincrement())
-  image       String
   name        String
   author      String
   category    String
