@@ -1,0 +1,25 @@
+.CardContent{
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.CardContent image{
+    object-fit: contain;
+}
+.CardContent:hover{
+    transform: scale(1.1);
+    transition: 0.8s ease-out;
+}
+.deleteBtn{
+    background-color: rgb(4, 124, 124);;
+    margin: 10px;
+}
+.viewBtn{
+    margin: 10px;
+}
+.viewBtn:hover{
+    transform: scale(1.1);
+}
+.deleteBtn:hover{
+    transform: scale(1.1);
+}

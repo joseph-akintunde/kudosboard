@@ -1,0 +1,9 @@
+.SearchComponents button{
+    background-color: rgb(4, 124, 124);
+    padding: .85em;
+    margin-left: .5em;
+}
+.SearchComponents input{
+    width: 20em;
+    height: 3em;
+}

@@ -1,0 +1,9 @@
+.KudosList{
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 5rem;
+    padding: .5rem;
+    justify-content: center;
+    margin-top: 10em;
+}

@@ -1,0 +1,25 @@
+.newBoardModal{
+    width: 30em;
+    height: 30em;
+    background-color: rgb(16, 16, 16);
+    color: #ffffff;
+    margin: auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 10px;
+}
+.newBoardModal form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+}
+.newBoardModal form input,select{
+    height: 3em;
+}
+.newBoardModal button{
+    margin-top: 10.5em;
+}
