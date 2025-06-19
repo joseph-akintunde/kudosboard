@@ -37,11 +37,11 @@ function App() {
       </header>
       <div className="card">
          <SearchComponents/>
-        <FilterBar/>
+        <FilterBar setShowBoard={setShowBoard}/>
         <button onClick={() => setOpenCreateModal(true)}>Create New Button</button>
         {openCreateModal && <CreateBoard 
-        closeModal={setOpenCreateModal}/>}
-        <KudosList showBoard = {showBoard}/>
+        closeModal={setOpenCreateModal} getBoards = {getBoards}/>}
+        <KudosList showBoard = {showBoard} getBoards={getBoards}/>
         <footer>
           <p>&copy; 2025 Kudosboard</p>
         </footer>

@@ -3,6 +3,7 @@ export function utility(data){
     for(let i = 0; i<data.length; i++){
         let board = data[i]
         let boardProperties = {
+            "id": board.id,
             "name": board.name,
             "author": board.author,
             "category": board.category

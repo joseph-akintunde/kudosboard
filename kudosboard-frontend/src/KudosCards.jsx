@@ -1,15 +1,16 @@
 import "./KudosCards.css"
 
-export function KudosCards({name, author, category, onDelete}){
+export function KudosCards({id, name, author, category,getBoards}){
 let RandomNumber = Math.floor(Math.random() * 1000) + 1
 const getImg = `https://picsum.photos/${RandomNumber}`
 async function deleteBoard(){
     try {
-        const response = await fetch(`http://localhost:3000/boards/${name}`, {
+        const response = await fetch(`http://localhost:3000/boards/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {
-            onDelete()
+            confirm("Are you sure you want to delete?")
+            getBoards()
         } else {
             console.error("Failed to delete board");
         }

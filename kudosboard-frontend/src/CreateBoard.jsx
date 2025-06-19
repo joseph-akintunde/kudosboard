@@ -1,10 +1,11 @@
 import { useState } from "react"
 import "./CreateBoard.css"
-export function CreateBoard({closeModal}){
+export function CreateBoard({closeModal,getBoards}){
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [author, setAuthor] = useState('')
-    async function CreateBoard(){
+    async function handleCreateBoard(e){
+        e.preventDefault
         try{
               const response = await fetch(`http://localhost:3000/boards` , {
               method: 'POST',
@@ -19,12 +20,12 @@ export function CreateBoard({closeModal}){
             if(response.ok){
                 const data = await response.json()
                 console.log("board created: ", data)
-
+                //setShowBoard((prev) => ([...prev, ...data]))
+                getBoards()
                 setName('')
                 setAuthor('')
                 setCategory('')
-
-                setShowBoard((prev) => [...prev, ...data])
+                
               } else{
                 throw new error("Failed")
               }
@@ -32,6 +33,7 @@ export function CreateBoard({closeModal}){
             console.log("error")
         }
     }
+    //create
     return(
         <div className="newBoardModal">
             <h2>CREATE NEW CARD</h2>
@@ -41,9 +43,9 @@ export function CreateBoard({closeModal}){
                 <label htmlFor="category">Category: </label>
                 <select name="category" id="category" value = {category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="" disabled>Select a Category</option>
-                    <option value="celebration">Celebration</option>
-                    <option value="thankyou">Thank you</option>
-                    <option value="inspiration">Inspiration</option>
+                    <option value="Celebration">Celebration</option>
+                    <option value="Thank you">Thank you</option>
+                    <option value="Inspiration">Inspiration</option>
                 </select>
                 <label htmlFor="author">Author: </label>
                 <input type="text" name="author" value = {author} onChange={(e) => setAuthor(e.target.value)}/>
@@ -51,7 +53,7 @@ export function CreateBoard({closeModal}){
             <button onClick={() => {
                 closeModal(false)
                 }}>CLOSE</button>
-            {name && category && author && (<button onClick={CreateBoard}>CREATE CARD</button>)}
+            {name && category && author && (<button onClick={handleCreateBoard}>CREATE CARD</button>)}
         </div>
     )
 }

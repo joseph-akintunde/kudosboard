@@ -1,12 +1,32 @@
+import { useState } from "react"
 import "./FilterBar.css"
-export function FilterBar(){
-    return(
+
+export function FilterBar({ setShowBoard }) {
+    const [category, setCategory] = useState('')
+
+    async function filterBoards(selectedCategory) {
+        setCategory(selectedCategory)
+        try {
+            const response = await fetch(`http://localhost:3000/boards?category=${selectedCategory}`, {
+                method: 'GET'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                console.log(data)
+                setShowBoard(data)
+            }
+        } catch {
+            console.error("board couldn't load")
+        }
+    }
+
+    return (
         <div className="FilterBar">
-            <button>ALL</button>
-            <button>RECENT</button>
-            <button>CELEBRATION</button>
-            <button>THANK YOU</button>
-            <button>INSPIRATION</button>
+            <button value="all" onClick={() => filterBoards('all')}>ALL</button>
+            <button value="Recent" onClick={() => filterBoards()}>RECENT</button>
+            <button value="Celebration" onClick={() => filterBoards('Celebration')}>CELEBRATION</button>
+            <button value="Thank_you" onClick={() => filterBoards('Thank_you')}>THANK YOU</button>
+            <button value="Inspiration" onClick={() => filterBoards('Inspiration')}>INSPIRATION</button>
         </div>
     )
 }
