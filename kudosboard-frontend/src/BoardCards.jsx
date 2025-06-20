@@ -2,30 +2,31 @@ import { useNavigate } from "react-router-dom";
 import "./KudosCards.css"
 import { useState } from "react";
 import { useEffect } from "react";
-
+ //function which shows how the cards should look like
 export function BoardCards({id, title, description, owner, gifUrl, boardId,cardFetch}){
+    //setting default upvote value to start from 0
     const [upvote, setUpvote] = useState(0)
-    // const [upvoted, setUpvoted] = useState(true)
+    //how the number of likes per card would be saved in local storage
     const upvoteBtn = `upvotes: ${title}`
-    // const upvotedBtn = `upvoted: ${title}`
+    
+    //ensures the number of upvotes stays even when page is refreshed
     useEffect(() => {
         const upvotes = localStorage.getItem(upvoteBtn)
-        // const onUpvoted = localStorage.getItem(upvotedBtn)
         if (upvotes) setUpvote(parseInt(upvotes))
-        // if(onUpvoted === 'true') setLiked(true)
     },[upvoteBtn]);
+    // upvoting function which only increases
     function upvoting(){
         const newUpvotes = upvote + 1
         setUpvote(newUpvotes)
         localStorage.setItem(upvoteBtn,newUpvotes.toString())
     }
-async function deleteBoard(){
+    //function for deleting the cards
+    async function deleteBoard(){
     try {
         const response = await fetch(`http://localhost:3000/boards/${boardId}/card/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {
-            confirm("Are you sure you want to delete?")
             cardFetch()
         } else {
             console.error("Failed to delete board");
@@ -34,8 +35,8 @@ async function deleteBoard(){
         console.error(err);
     }
 }
-const nav = useNavigate()
     return(
+        //how the cards look like
         <div className="CardContent">
             <img src = {gifUrl} alt="" />
             <p>{title}</p>

@@ -1,5 +1,6 @@
 import { BoardCards } from "./BoardCards";
 import { cardUtility } from "./utility/cardUtility";
+//function to render all the cards
 export function  BoardList({cards,cardFetch}){
     const kudosBoards = cardUtility(cards)
     return(

@@ -1,3 +1,4 @@
+//utility function to render cards in the board page
 export function cardUtility(data){
     let cardArray = []
     for(let i = 0; i<data.length; i++){

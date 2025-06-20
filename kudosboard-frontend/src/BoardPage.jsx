@@ -3,12 +3,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { BoardList } from "./BoardList";
 import { CreateCards } from "./CreateCards";
+//function for the individual boards' homepage
 export default function BoardPage(){
     const {boardId} = useParams();
     const [board, setBoard] = useState({})
     const [cards, setCards] = useState([])
     const [openCreateModal, setOpenCreateModal] = useState(false)
-
+    //ensures you can access the boards by their id which will be crucial for adding cards and other stuff
     async function boardFetch(){
         const response = await fetch(`http://localhost:3000/boards/${boardId}`)
         if(response.ok){
@@ -16,35 +17,27 @@ export default function BoardPage(){
              setBoard(data)
         }
     }
-    async function cardFetch(){
-        const response = await fetch(`http://localhost:3000/boards/${boardId}/card`)
-         if(response.ok){
-            const data = await response.json()
-             setCards(data)
-        }
-    }
-
-async function cardFetch() {
+//fetches the cards that belong to a particular board
+    async function cardFetch() {
+    //if not right board Id return nothing
     if (!boardId) return;
-    try {
-        const response = await fetch(`http://localhost:3000/boards/${boardId}/card`);
-        if (response.ok) {
-            const data = await response.json();
-            setCards(data);
-        } else {
+        try {
+            const response = await fetch(`http://localhost:3000/boards/${boardId}/card` ,{
+                method: "GET"
+            }
+            );
+            if (response.ok) {
+                const data = await response.json();
+                setCards(data);
+            } else {
+                setCards([]);
+                console.error("Failed to fetch cards");
+            }
+        } catch (error) {
             setCards([]);
-            console.error("Failed to fetch cards");
+            console.error("Error fetching cards:", error);
         }
-    } catch (error) {
-        setCards([]);
-        console.error("Error fetching cards:", error);
-    }
-}
-
-useEffect(() => {
-    cardFetch();
-}, [boardId]);
-    
+    }      
     useEffect(() =>{
         boardFetch()
         cardFetch()
