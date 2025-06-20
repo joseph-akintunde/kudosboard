@@ -17,8 +17,8 @@ async function deleteBoard(){
         } else {
             throw new error("Failed to delete board");
         }
-    } catch (error) {
-        console.error(err);
+    } catch{
+        console.error("error");
     }
 }
 //calling react navigate due to use of React Routing. it'd be able to go to another route(path)
