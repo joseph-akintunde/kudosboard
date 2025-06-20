@@ -44,7 +44,7 @@ export function CreateBoard({closeModal,getBoards}){
                 <select name="category" id="category" value = {category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="" disabled>Select a Category</option>
                     <option value="Celebration">Celebration</option>
-                    <option value="Thank you">Thank you</option>
+                    <option value="Thank_you">Thank you</option>
                     <option value="Inspiration">Inspiration</option>
                 </select>
                 <label htmlFor="author">Author: </label>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./KudosCards.css"
 
 export function KudosCards({id, name, author, category,getBoards}){
@@ -18,6 +19,7 @@ async function deleteBoard(){
         console.error(err);
     }
 }
+const nav = useNavigate()
     return(
         <div className="CardContent">
             <img width="300px" height="300px" src={getImg} alt="Card Name" />
@@ -25,7 +27,7 @@ async function deleteBoard(){
             <p>{category}</p>
             <p>{author}</p>
             <div className="cardBtns">
-                <button className="viewBtn">VIEW BOARD</button>
+                <button className="viewBtn" onClick={() => nav(`boards/${id}`)}>VIEW BOARD</button>
                 <button className="deleteBtn" onClick={deleteBoard}>DELETE BOARD</button>
             </div>
         </div>

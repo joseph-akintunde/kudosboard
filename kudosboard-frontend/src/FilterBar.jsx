@@ -25,7 +25,7 @@ export function FilterBar({ setShowBoard }) {
             <button value="all" onClick={() => filterBoards('all')}>ALL</button>
             <button value="Recent" onClick={() => filterBoards()}>RECENT</button>
             <button value="Celebration" onClick={() => filterBoards('Celebration')}>CELEBRATION</button>
-            <button value="Thank_you" onClick={() => filterBoards('Thank_you')}>THANK YOU</button>
+            <button value="Thank you" onClick={() => filterBoards('Thank_you')}>THANK YOU</button>
             <button value="Inspiration" onClick={() => filterBoards('Inspiration')}>INSPIRATION</button>
         </div>
     )

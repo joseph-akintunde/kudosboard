@@ -1,0 +1,16 @@
+import { BoardCards } from "./BoardCards";
+import { cardUtility } from "./utility/cardUtility";
+export function  BoardList({cards,cardFetch}){
+    const kudosBoards = cardUtility(cards)
+    return(
+        <div className="KudosList">
+            {
+            kudosBoards.map((board,index) => {
+                return(
+                    <BoardCards key = {index} id = {board.id} title = {board.title} description = {board.description} owner = {board.owner} gifUrl = {board.gifUrl} cardFetch={cardFetch}/>
+                )
+            })
+        }
+        </div>
+    )
+    }

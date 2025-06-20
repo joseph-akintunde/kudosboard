@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import BoardPage from './BoardPage'
 import { KudosCards } from './KudosCards'
 import { KudosList } from './KudosList'
 import { FilterBar } from "./FilterBar";
@@ -9,6 +10,10 @@ import { SearchComponents } from './SearchComponent'
 import { CreateBoard } from './CreateBoard'
 import "./Header.css"
 import { useEffect } from 'react'
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { CreateCards } from './CreateCards'
+import { BoardList } from './BoardList'
+import { useParams } from 'react-router-dom'
 
 function App() {
   const [openCreateModal, setOpenCreateModal] = useState(false)
@@ -30,23 +35,38 @@ function App() {
   useEffect(()=>{
     getBoards()
   },[])
+  
   return (
-    <>
+    <BrowserRouter>
       <header className='Header'>
-        <h2>KUDOBOARD</h2>
+        <h1>KUDOBOARD</h1>
       </header>
-      <div className="card">
-         <SearchComponents/>
-        <FilterBar setShowBoard={setShowBoard}/>
-        <button onClick={() => setOpenCreateModal(true)}>Create New Button</button>
-        {openCreateModal && <CreateBoard 
-        closeModal={setOpenCreateModal} getBoards = {getBoards}/>}
-        <KudosList showBoard = {showBoard} getBoards={getBoards}/>
-        <footer>
-          <p>&copy; 2025 Kudosboard</p>
-        </footer>
-      </div>
-    </>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="card">
+              <SearchComponents setShowBoard={setShowBoard} />
+              <FilterBar setShowBoard={setShowBoard} />
+              <button onClick={() => setOpenCreateModal(true)}>Create New Board</button>
+              
+              <KudosList showBoard={showBoard} getBoards={getBoards} />
+            </div>
+          }
+        />
+        <Route
+          path="/boards/:boardId"
+          element={
+            <div>
+              <BoardPage/>
+            </div>
+          }
+        />
+      </Routes>
+      <footer>
+        <p>&copy; 2025 Kudosboard</p>
+      </footer>
+    </BrowserRouter>
   )
 }
 

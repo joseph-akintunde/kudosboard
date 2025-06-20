@@ -1,0 +1,27 @@
+.cardModal{
+    width: 30em;
+    height: 55em;
+    background-color: rgb(216, 167, 167);
+    color: #ffffff;
+    margin: auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 10px;
+}
+.cardModal form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    margin: 10% auto;
+    gap: 13px;
+}
+.cardModal form input,select{
+    height: 3em;
+}
+.cardModal button{
+    width: 10em;
+    margin: auto;
+}
