@@ -54,7 +54,7 @@ export function CreateBoard({closeModal,getBoards}){
             <button onClick={() => {
                 closeModal(false)
                 }}>CLOSE</button>
-            {name && category && (<button onClick={handleCreateBoard}>CREATE CARD</button>)}
+            {name && category && (<button onClick={handleCreateBoard}>CREATE BOARD</button>)}
         </div>
     )
 }
