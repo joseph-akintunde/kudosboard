@@ -8,18 +8,31 @@ datasource db {
 }
 
 model Boards {
-  id       Int    @id @default(autoincrement())
-  name     String
-  author   String
-  category String
-  cards    Card[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  author    String
+  category  String
+  createdAt DateTime @default(now())
+  cards     Card[]
 }
+
 model Card {
-  id       Int    @id @default(autoincrement())
-  title     String
-  description   String
-  owner String
-  boardId    Int
-  gifUrl     String?
-  board    Boards @relation(fields: [boardId], references: [id])
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  owner       String
+  boardId     Int
+  gifUrl      String?
+  pinned      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  board       Boards   @relation(fields: [boardId], references: [id])
+  comment     Comments[]
+}
+model Comments{
+    id          Int      @id @default(autoincrement())
+    author      String
+    message     String
+    cardId      Int
+    createdAt   DateTime @default(now())
+    card        Card @relation(fields: [cardId], references: [id])
 }

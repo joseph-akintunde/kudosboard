@@ -9,7 +9,8 @@ export function cardUtility(data){
             "title": dat.title,
             "description": dat.description,
             "owner": dat.owner,
-            "boardId": dat.boardId
+            "boardId": dat.boardId,
+            "pinned": dat.pinned
         }
         cardArray.push(items)
     }

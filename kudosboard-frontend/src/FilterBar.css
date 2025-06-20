@@ -4,3 +4,15 @@
 .FilterBar button{
     margin: 10px;
 }
+.light-mode .FilterBar button:hover{
+    background: black;
+    color: white;
+    transition: 0.8s ease-out;
+    transform: scale(1.2);
+}
+.dark-mode .FilterBar button:hover{
+    background: white;
+    color: black;
+    transition: 0.8s ease-out;
+    transform: scale(1.2);
+}

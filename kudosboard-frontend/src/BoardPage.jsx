@@ -49,7 +49,7 @@ export default function BoardPage(){
             {openCreateModal && (
                             <CreateCards closeModal={setOpenCreateModal} cardFetch = {cardFetch} />
                           )}
-            <BoardList cards={cards} cardFetch={cardFetch}/>
+            <BoardList cards={cards} cardFetch={cardFetch} closeModal={setOpenCreateModal}/>
         </div>
     )
 }

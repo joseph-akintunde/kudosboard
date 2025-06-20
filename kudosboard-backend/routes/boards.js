@@ -2,12 +2,8 @@ const express = require('express');
 const {PrismaClient} = require('@prisma/client');
 const router = express.Router();
 const prisma = new PrismaClient();
-// router.get('/', async(req, res) => {
-//     const boards = await prisma.boards.findMany()
-//     res.json(boards);
-// })
 router.get('/', async (req,res) => {
-    const {category, search} = req.query
+    const {category, search, sort} = req.query
     console.log(category)
     const filters = {}
     if(category && category !== "all"){
@@ -23,7 +19,8 @@ router.get('/', async (req,res) => {
     }
     try{
         const boards = await prisma.boards.findMany({
-            where: filters
+            where: filters,
+            orderBy: sort === "recent" ?{createdAt: 'desc'}:undefined,
         })
         res.json(boards)
     } catch(err){
@@ -67,7 +64,7 @@ router.get('/:boardId', async (req,res) => {
     }
 })
 router.post('/:boardId/card', async (req,res) => {
-    const {boardId,card} = req.params
+    const {boardId} = req.params
     const {title, description, owner, gifUrl} = req.body;
     try{
         const card = await prisma.card.create({
@@ -86,12 +83,31 @@ router.post('/:boardId/card', async (req,res) => {
         res.status(500).json({error: 'error'})
     }
 })
+
 router.get('/:boardId/card', async(req,res) => {
     const {boardId} = req.params
-    const cards = await prisma.card.findMany({
-        where: {boardId: parseInt(boardId)}
+    try {
+        const cards = await prisma.card.findMany({
+            where: { boardId: parseInt(boardId) },
+            orderBy: [
+                { pinned: 'desc' },
+                { createdAt: 'desc' }
+            ]
+        });
+        res.json(cards);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'error' });
+    }
+})
+router.put('/:boardId/card/:cardId/pin', async(req,res) =>{
+    const {cardId} = req.params
+    const {pinned} = req.body
+    const updateCard = await prisma.card.update({
+        where: {id: parseInt(cardId)},
+        data: {pinned},
     })
-    res.json(cards)
+    res.json(updateCard)
 })
 router.get('/:boardId/card/:cardId', async(req,res) => {
     const {boardId, cardId} = req.params;
@@ -99,9 +115,9 @@ router.get('/:boardId/card/:cardId', async(req,res) => {
         const card = await prisma.card.findUnique({
             where: { id: parseInt(cardId) }
         });
-        if (!card || card.boardId !== parseInt(boardId)) {
-            return res.status(404).json({ error: "card not found" });
-        }
+        // if (!card || card.boardId !== parseInt(boardId)) {
+        //     return res.status(404).json({ error: "card not found" });
+        // }
         res.json(card);
     } catch (error) {
         console.log(error);
@@ -109,11 +125,41 @@ router.get('/:boardId/card/:cardId', async(req,res) => {
     }
 });
 router.delete("/:boardId/card/:cardId", async(req,res) =>{
-    const {boardId, cardId} = req.params
+    const {cardId} = req.params
     const deletedCard = await prisma.card.delete({
         where: {id: parseInt(cardId)}
     })
     res.json(deletedCard)
 })
+router.post('/:boardId/card/:cardId/comment', async(req,res) =>{
+    const {cardId} = req.params
+    const {author, message} = req.body
+    try{
+        const comment = await prisma.comments.create({
+            data: {
+                author,
+                message,
+                cardId: parseInt(cardId)
+            }
+        })
+        res.json(comment)
 
+    }catch(error){
+        console.log(error)
+        res.status(500).json({error: "error"})
+    }
+
+})
+router.get('/:boardId/card/:cardId/comment', async(req,res) => {
+    const {cardId} = req.params
+    try{
+        const comment = await prisma.comments.findMany({
+            where: {cardId: parseInt(cardId)},
+            orderBy: {createdAt: 'desc'}
+        })
+        res.json(comment)
+    }catch(error){
+        res.status(500).json({error: "Error"})
+    }
+})
 module.exports = router;

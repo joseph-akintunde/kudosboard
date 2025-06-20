@@ -1,7 +1,19 @@
-.cardModal{
+.light-mode .cardModal{
     width: 30em;
     height: 55em;
-    background-color: rgb(216, 167, 167);
+    background-color: rgb(235, 235, 235);
+    color: #ffffff;
+    margin: auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 10px;
+}
+.dark-mode .cardModal{
+    width: 30em;
+    height: 55em;
+    background-color: rgb(46, 45, 45);
     color: #ffffff;
     margin: auto;
     position: fixed;
@@ -21,7 +33,21 @@
 .cardModal form input,select{
     height: 3em;
 }
-.cardModal button{
+.light-mode .cardModal button{
+    width: 10em;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+
+}
+.light-mode .cardModal button:hover{
+    background-color: black;
+    color: white;
+}
+.dark-mode .cardModal button:hover{
+    background-color: white;
+    color: black;
+}
+.dark-mode .cardModal button{
     width: 10em;
     margin: auto;
 }

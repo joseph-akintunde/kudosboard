@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./CreateCards.css"
 import { useParams } from "react-router-dom";
 // function to create the cards in the board's homepage. 
-export function CreateCards({closeModal, cardFetch, BoardPage}){
+export function CreateCards({closeModal, cardFetch}){
     // useStates for the card's title, description, and owner. 
     // also for the Gif data where it stores the user's value's gifs. it stores 6 gifs at a time because i gave it a limit of 6
     // GifSearch handles the input for the search query. useParam call here lets me access the id of the particular board i am adding cards to.
@@ -25,17 +25,10 @@ export function CreateCards({closeModal, cardFetch, BoardPage}){
         //add the data array to gifData
         setGifData(data.data);
     }
-
-    const [showGifModal, setShowGifModal] = useState(false); //to open modal that'd display gifs
     const [selectedGifUrl, setSelectedGifUrl] = useState(''); //for the gifUrl bar
-
     function handleGifClick(gifUrl) {
         //handles the url for any clicked gif
         setSelectedGifUrl(gifUrl);
-    }
-
-    function handleGifModalClose() {
-        setShowGifModal(false);
     }
     // handles the card creation
     async function handleCardCreate(e){

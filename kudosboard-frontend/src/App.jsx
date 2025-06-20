@@ -1,23 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import BoardPage from './BoardPage'
-import { KudosCards } from './KudosCards'
 import { KudosList } from './KudosList'
 import { FilterBar } from "./FilterBar";
 import { SearchComponents } from './SearchComponent'
-import { CreateBoard } from './CreateBoard'
+import { CreateBoard } from './CreateBoard';
 import "./Header.css"
 import { useEffect } from 'react'
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import { CreateCards } from './CreateCards'
-import { BoardList } from './BoardList'
-import { useParams } from 'react-router-dom'
-
 function App() {
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const [showBoard, setShowBoard] = useState([])
+  const [darkMode, setDarkMode] = useState(false);
+  function toggleDarkMode() {
+    setDarkMode(prev => {
+      const newMode = !prev;
+      localStorage.setItem('darkMode',(newMode));
+      return newMode;
+    });
+  }
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode !== null) {
+      setDarkMode(JSON.parse(savedMode));
+    }
+  }, []);
   async function getBoards(){
     try{
       const response = await fetch(`http://localhost:3000/boards`)
@@ -35,10 +43,17 @@ function App() {
   useEffect(()=>{
     getBoards()
   },[])
-  
+
+  useEffect(() => {
+  document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+}, [darkMode]);
   return (
     <BrowserRouter>
-      <header className='Header'>
+    <div>
+        <button onClick={toggleDarkMode}>
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </button>
+        <header className='Header'>
         <h1>KUDOBOARD</h1>
       </header>
       <Routes>
@@ -49,7 +64,7 @@ function App() {
               <SearchComponents setShowBoard={setShowBoard} />
               <FilterBar setShowBoard={setShowBoard} />
               <button onClick={() => setOpenCreateModal(true)}>Create New Board</button>
-              
+              {openCreateModal && <CreateBoard closeModal={setOpenCreateModal} getBoards = {getBoards}/>}
               <KudosList showBoard={showBoard} getBoards={getBoards} />
             </div>
           }
@@ -57,15 +72,17 @@ function App() {
         <Route
           path="/boards/:boardId"
           element={
-            <div>
               <BoardPage/>
-            </div>
           }
         />
+        {/* <Route
+        path = "/boards/:boardId/card/:cardId"
+        /> */}
       </Routes>
       <footer>
         <p>&copy; 2025 Kudosboard</p>
       </footer>
+    </div>
     </BrowserRouter>
   )
 }

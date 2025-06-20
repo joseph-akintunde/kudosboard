@@ -4,19 +4,24 @@
   padding: 2rem;
   text-align: center;
 }
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+body.dark-mode {
+  background: #000000;
+  color: #f1f1f1;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+body.light-mode{
+  background: white;
+  color: black;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.light-mode button{
+  background-color: white;
+  
+  border: 2px solid black;
 }
-
+.dark-mode button{
+  background: black;
+  border: 2px solid white;
+  color: white;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
