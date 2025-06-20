@@ -51,10 +51,10 @@ function App() {
   return (
     <BrowserRouter>
     <div>
+        <header className='Header'>
         <button onClick={toggleDarkMode}>
           {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
-        <header className='Header'>
         <h1>KUDOBOARD</h1>
       </header>
       <Routes>

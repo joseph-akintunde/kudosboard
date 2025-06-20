@@ -17,18 +17,23 @@ export function SearchComponents({setShowBoard}){
             } catch {
                 console.error("board couldn't load")
             }
-        }
+         
+    }
+        function handleSubmit(e){
+            e.preventDefault();
+            filterBoards(search);
+         }
     
     return(
-        <div className='SearchComponents'>
+        <form className='SearchComponents' onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="boards"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
             />
-            <button type="submit" onClick={() => filterBoards(search)}>SEARCH</button>
+            <button type="submit">SEARCH</button>
             <button onClick={() => { setSearch(''); setShowBoard([]); }}>CLEAR</button>
-        </div>
+        </form>
     )
 }
