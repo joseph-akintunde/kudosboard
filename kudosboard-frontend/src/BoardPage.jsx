@@ -5,13 +5,14 @@ import { BoardList } from "./BoardList";
 import { CreateCards } from "./CreateCards";
 //function for the individual boards' homepage
 export default function BoardPage(){
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     const {boardId} = useParams();
     const [board, setBoard] = useState({})
     const [cards, setCards] = useState([])
     const [openCreateModal, setOpenCreateModal] = useState(false)
     //ensures you can access the boards by their id which will be crucial for adding cards and other stuff
     async function boardFetch(){
-        const response = await fetch(`http://localhost:3000/boards/${boardId}`)
+        const response = await fetch(`${baseUrl}boards/${boardId}`)
         if(response.ok){
             const data = await response.json()
              setBoard(data)
@@ -22,7 +23,7 @@ export default function BoardPage(){
     //if not right board Id return nothing
     if (!boardId) return;
         try {
-            const response = await fetch(`http://localhost:3000/boards/${boardId}/card` ,{
+            const response = await fetch(`${baseUrl}boards/${boardId}/card` ,{
                 method: "GET"
             }
             );

@@ -2,12 +2,13 @@ import { useState } from "react"
 import "./FilterBar.css"
 
 export function FilterBar({ setShowBoard }) {
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     const [category, setCategory] = useState('')
     async function filterBoards(selectedCategory, sortOption = '') {
         setCategory(selectedCategory)
         const sort = selectedCategory === 'recent'?'recent':''
         try {
-            const response = await fetch(`http://localhost:3000/boards?category=${selectedCategory}&sort=${sortOption}`, {
+            const response = await fetch(`${baseUrl}boards?category=${selectedCategory}&sort=${sortOption}`, {
                 method: 'GET'
             })
             if (response.ok) {

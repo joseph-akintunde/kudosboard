@@ -9,6 +9,7 @@ import "./Header.css"
 import { useEffect } from 'react'
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 function App() {
+  const baseUrl =  import.meta.env.VITE_BASE_URL
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const [showBoard, setShowBoard] = useState([])
   const [darkMode, setDarkMode] = useState(false);
@@ -28,7 +29,7 @@ function App() {
   }, []);
   async function getBoards(){
     try{
-      const response = await fetch(`http://localhost:3000/boards`)
+      const response = await fetch(`${baseUrl}boards`)
       if(!response.ok){
        throw new Error("Can't create board")
       }
@@ -75,9 +76,6 @@ function App() {
               <BoardPage/>
           }
         />
-        {/* <Route
-        path = "/boards/:boardId/card/:cardId"
-        /> */}
       </Routes>
       <footer>
         <p>&copy; 2025 Kudosboard</p>

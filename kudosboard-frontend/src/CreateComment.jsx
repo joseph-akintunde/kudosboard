@@ -6,7 +6,7 @@ export function CreateComments({id, closeModal, showComment,comments}){
     // useStates for the card's title, description, and owner. 
     // also for the Gif data where it stores the user's value's gifs. it stores 6 gifs at a time because i gave it a limit of 6
     // GifSearch handles the input for the search query. useParam call here lets me access the id of the particular board i am adding cards to.
-    
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     const [author, setAuthor] = useState('')
     const [message, setMessage] = useState("")
     const {boardId} = useParams();
@@ -15,7 +15,7 @@ export function CreateComments({id, closeModal, showComment,comments}){
 
     async function addComment(){
         try{
-            const response = await fetch(`http://localhost:3000/boards/${boardId}/card/${id}/comment`, {
+            const response = await fetch(`${baseUrl}boards/${boardId}/card/${id}/comment`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

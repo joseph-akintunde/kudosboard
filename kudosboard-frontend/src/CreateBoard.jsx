@@ -7,7 +7,8 @@ export function CreateBoard({closeModal,getBoards}){
     async function handleCreateBoard(e){
         e.preventDefault
         try{
-              const response = await fetch(`http://localhost:3000/boards` , {
+            const baseUrl =  import.meta.env.VITE_BASE_URL
+              const response = await fetch(`${baseUrl}boards` , {
               method: 'POST',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -20,7 +21,7 @@ export function CreateBoard({closeModal,getBoards}){
             if(response.ok){
                 const data = await response.json()
                 console.log("board created: ", data)
-                //setShowBoard((prev) => ([...prev, ...data]))
+                
                 getBoards()
                 setName('')
                 setAuthor('')

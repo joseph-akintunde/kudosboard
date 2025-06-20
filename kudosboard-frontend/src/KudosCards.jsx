@@ -6,8 +6,9 @@ let RandomNumber = Math.floor(Math.random() * 1000) + 1
 const getImg = `https://picsum.photos/${RandomNumber}` //generating random pictures from picsum.photos
 //function to delete a board
 async function deleteBoard(){
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     try { //fetching the delete method for boards 
-        const response = await fetch(`http://localhost:3000/boards/${id}`, {
+        const response = await fetch(`${baseUrl}boards/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {

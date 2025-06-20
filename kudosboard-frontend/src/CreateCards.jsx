@@ -6,7 +6,7 @@ export function CreateCards({closeModal, cardFetch}){
     // useStates for the card's title, description, and owner. 
     // also for the Gif data where it stores the user's value's gifs. it stores 6 gifs at a time because i gave it a limit of 6
     // GifSearch handles the input for the search query. useParam call here lets me access the id of the particular board i am adding cards to.
-    
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     const [title, setTitle] = useState('')
     const {boardId} = useParams();
     const [description, setDescription] = useState('')
@@ -19,7 +19,7 @@ export function CreateCards({closeModal, cardFetch}){
     async function getGifs(e){
         e.preventDefault();
         const apiKey = import.meta.env.VITE_GIPHY_API_KEY; //task: remember to correct this in the env file
-        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=6OpKrsYHKpw5VGgmjGEu8HYDNPj3QIhe&limit=6&q=${gifSearch}`);
+        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=6&q=${gifSearch}`);
         const data = await response.json();
         console.log(data);
         //add the data array to gifData
@@ -35,7 +35,7 @@ export function CreateCards({closeModal, cardFetch}){
         e.preventDefault()
         try{
             // fetches from this url
-            const response = await fetch(`http://localhost:3000/boards/${boardId}/card`, {
+            const response = await fetch(`${baseUrl}boards/${boardId}/card`, {
                 // POST- add
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},

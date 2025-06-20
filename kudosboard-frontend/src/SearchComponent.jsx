@@ -3,9 +3,10 @@ import { useState } from 'react'
 export function SearchComponents({setShowBoard}){
         const [search, setSearch] = useState('')
         async function filterBoards(selectedSearchTerm) {
+            const baseUrl =  import.meta.env.VITE_BASE_URL
             setSearch(selectedSearchTerm)
             try {
-                const response = await fetch(`http://localhost:3000/boards?search=${selectedSearchTerm}`, {
+                const response = await fetch(`${baseUrl}boards?search=${selectedSearchTerm}`, {
                     method: 'GET'
                 })
                 if (response.ok) {

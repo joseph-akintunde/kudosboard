@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CreateComments } from "./CreateComment";
  //function which shows how the cards should look like
 export function BoardCards({id, title, description, owner, gifUrl, pinned, boardId,cardFetch,closeModal}){
+    const baseUrl =  import.meta.env.VITE_BASE_URL
     //setting default upvote value to start from 0
     const [upvote, setUpvote] = useState(0)
     //how the number of likes per card would be saved in local storage
@@ -26,7 +27,7 @@ export function BoardCards({id, title, description, owner, gifUrl, pinned, board
     //function to grab comments.
     async function showComment(){
         try{
-            const response = await fetch(`http://localhost:3000/boards/${boardId}/card/${id}/comment`, {
+            const response = await fetch(`${baseUrl}boards/${boardId}/card/${id}/comment`, {
                 method: "GET"
             });
             if(response.ok){
@@ -41,7 +42,7 @@ export function BoardCards({id, title, description, owner, gifUrl, pinned, board
     //function for deleting the cards
     async function deleteBoard(){
     try {
-        const response = await fetch(`http://localhost:3000/boards/${boardId}/card/${id}`, {
+        const response = await fetch(`${baseUrl}boards/${boardId}/card/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {
@@ -54,7 +55,7 @@ export function BoardCards({id, title, description, owner, gifUrl, pinned, board
     }
 }
 async function togglePin({pinned}){
-        const response = await fetch(`http://localhost:3000/boards/${boardId}/card/${id}/pin`, {
+        const response = await fetch(`${baseUrl}boards/${boardId}/card/${id}/pin`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
