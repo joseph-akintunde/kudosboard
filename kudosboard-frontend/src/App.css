@@ -4,6 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+.light-mode .Header{
+  background-color: grey;
+}
+.dark-mode .Header{
+  background-color: grey;
+}
 body.dark-mode {
   background: #000000;
   color: #f1f1f1;

@@ -37,7 +37,7 @@ export function CreateBoard({closeModal,getBoards}){
     //create
     return(
         <div className="newBoardModal">
-            <h2>CREATE NEW CARD</h2>
+            <h2>CREATE NEW BOARD</h2>
             <form action="">
                 <label htmlFor="name">Title: </label>
                 <input type="text" id="name" name="name" value = {name} onChange={(e) => setName(e.target.value)}/>
@@ -54,7 +54,7 @@ export function CreateBoard({closeModal,getBoards}){
             <button onClick={() => {
                 closeModal(false)
                 }}>CLOSE</button>
-            {name && category && author && (<button onClick={handleCreateBoard}>CREATE CARD</button>)}
+            {name && category && (<button onClick={handleCreateBoard}>CREATE CARD</button>)}
         </div>
     )
 }
