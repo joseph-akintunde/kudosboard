@@ -100,7 +100,7 @@ export function CreateCards({closeModal, cardFetch}){
                     />
                     <label htmlFor=""></label>
                     <input type="text" placeholder="Enter Card Owner" value={owner} onChange={(e) => setOwner(e.target.value)}/>
-                    {title && description && gifSearch && owner && <button type = "submit" onClick={handleCardCreate}>Create Card</button>}
+                    {title && description && gifSearch && <button type = "submit" onClick={handleCardCreate}>Create Card</button>}
                     <button type="button" onClick={() => closeModal(false)}>Close</button>
                 </form>
             </div>

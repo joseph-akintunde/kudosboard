@@ -17,7 +17,7 @@ async function deleteBoard(){
         } else {
             throw new error("Failed to delete board");
         }
-    } catch (err) {
+    } catch (error) {
         console.error(err);
     }
 }
