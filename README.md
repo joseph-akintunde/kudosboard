@@ -4,7 +4,7 @@
 
 Submitted by: JOSEPH AKINTUNDE
 
-Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Kudos Board Deployed Site](https://kudosboard-frontend-mbua.onrender.com/)
 
 ### Application Features
 
@@ -87,14 +87,14 @@ Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
 ####  Stretch Features
 
-- [X] **Comments**
-  - [X] Users can add comments to cards.
-  - [X] To successfully add a comment, users must specify a text message body.
-  - [X] Users are given the option to specify the author of the comment.
-  - [X] Users can view comments on card in a pop-up modal that displays the card's:
-    - [X] Text message 
+- [] **Comments**
+  - [] Users can add comments to cards.
+  - [] To successfully add a comment, users must specify a text message body.
+  - [] Users are given the option to specify the author of the comment.
+  - [] Users can view comments on card in a pop-up modal that displays the card's:
+    - [] Text message 
     - [ ] Gif
-    - [X] Author (if specified)
+    - [] Author (if specified)
     - [ ] A list of the card's comments and each comment's:
       - [ ] Message body
       - [ ] Author (if specified)
@@ -137,9 +137,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+<div style="position: relative; padding-bottom: 64.55089820359281%; height: 0;"><iframe src="https://www.loom.com/embed/32d8234e8ae44b8ea77cb43d05479714?sid=e55a077b-b095-4e00-adc8-1cfd61dad9c9" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ### Reflection
 
