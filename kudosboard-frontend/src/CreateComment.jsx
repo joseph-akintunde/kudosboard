@@ -13,7 +13,8 @@ export function CreateComments({id, closeModal, showComment,comments}){
     //API call to get the GIFS
     console.log(comments)
 
-    async function addComment(){
+    async function addComment(e){
+        e.preventDefault();
         try{
             const response = await fetch(`${baseUrl}boards/${boardId}/card/${id}/comment`, {
                 method: "POST",
@@ -43,7 +44,7 @@ export function CreateComments({id, closeModal, showComment,comments}){
                     <input type="text" placeholder="Enter your name" value={author} onChange={(e) => setAuthor(e.target.value)}/>
                     <label htmlFor="description"></label>
                     <input type="text" placeholder="Enter Message" value={message} onChange={(e) => setMessage(e.target.value)}/>
-                    {author && message && <button onClick={addComment}>COMMENT</button>}
+                    {author && message && <button onClick={(e) => addComment(e)}>COMMENT</button>}
                     {comments.map(comment => {
                         return <div>
                             {comment.author},
