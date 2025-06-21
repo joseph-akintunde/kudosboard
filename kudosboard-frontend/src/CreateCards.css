@@ -1,7 +1,7 @@
 .light-mode .cardModal{
     width: 30em;
     height: 55em;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(0, 0, 0);
     color: #ffffff;
     margin: auto;
     position: fixed;
