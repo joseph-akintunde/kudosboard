@@ -43,7 +43,7 @@ export function CreateComments({id, closeModal, showComment,comments}){
                     <input type="text" placeholder="Enter your name" value={author} onChange={(e) => setAuthor(e.target.value)}/>
                     <label htmlFor="description"></label>
                     <input type="text" placeholder="Enter Message" value={message} onChange={(e) => setMessage(e.target.value)}/>
-                    {author && message && <button type = "submit" onClick={addComment}>COMMENT</button>}
+                    {author && message && <button onClick={addComment}>COMMENT</button>}
                     {comments.map(comment => {
                         return <div>
                             {comment.author},
